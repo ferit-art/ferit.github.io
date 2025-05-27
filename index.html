@@ -55,6 +55,10 @@
             </footer>
         </section>
     </main>
+    <div id="offline" style="display: none;">
+        <h2>Offline</h2>
+        <p>Det verkar som att du är offline. Vänligen kontrollera din internetanslutning.</p>
+    </div>
     <footer id="footer" class="footer">
         <button><img id="mobilnr" src="img/phone.png" alt="telefon_länk"></button>
         <button><img id="sms" src="img/message.png" alt="chat_länk"></button>
@@ -62,9 +66,13 @@
     </footer>
 </body>
 <script>
-    if('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js?v=1.5');
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js?v=1.5').then(function (registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function (error) {
+                console.log('ServiceWorker registration failed: ', error);
+            });
         });
     }
 </script>

@@ -3,36 +3,32 @@
  * https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Offline_Service_workers (2021-06-09)
  * https://web.dev/offline-cookbook/
  */
- const cacheKey = 'cache-v1';
+const cacheKey = 'cache-v1';
 
- const cacheArray = [
-   '/index.html',
-   '/manifest.json',
-   '/icons/icon-72x72.png',
-   '/icons/icon-96x96.png',
-   '/icons/icon-128x128.png',
-   '/icons/icon-144x144.png',
-   '/icons/icon-152x152.png',
-   '/icons/icon-180x180.png',
-   '/icons/icon-192x192.png',
-   '/icons/icon-32x32.png',
-   '/icons/icon-48x48.png',
-   '/icons/icon-512x512.png',
-   '/style.css',
-   '/script.js'
- ];
+const cacheArray = [
+  '/index.html',
+  '/manifest.json',
+  '/style.css',
+  '/script.js',
+  '/img/icon-192x192.png',
+  '/img/icon-512x512.png',
+  '/img/icon-256x256.png',
+  '/img/icon-384x384.png'
+];
 
- self.addEventListener('install', event => {
-   console.log('Attempting to install service worker and cache static assets');
-   event.waitUntil(
-     caches.open(cacheKey)
-     .then(cache => {
-       return cache.addAll(cacheArray);
-     })
-   );
- });
+const fallbackPage = '/offline.html';
 
- /** Rensar cache */
+self.addEventListener('install', event => {
+  console.log('Attempting to install service worker and cache static assets');
+  event.waitUntil(
+    caches.open(cacheKey)
+    .then(cache => {
+      return cache.addAll([...cacheArray, fallbackPage]);
+    })
+  );
+});
+
+/** Rensar cache */
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((keyList) => {
     return Promise.all(keyList.map((key) => {
@@ -42,18 +38,17 @@ self.addEventListener('activate', (e) => {
   }));
 });
 
- /** cache-filer först, upddaterar cache från servern */
- self.addEventListener('fetch', function (event) {
-   if (!(event.request.url.indexOf('http') === 0)) return; 
-   event.respondWith(
-     caches.open(cacheKey).then(function (cache) {
-       return cache.match(event.request).then(function (response) {
-         var fetchPromise = fetch(event.request).then(function (networkResponse) {
-           cache.put(event.request, networkResponse.clone());
-           return networkResponse;
-         });
-         return response || fetchPromise;
-       });
-     }),
-   );
- });
+/** cache-filer först, upddaterar cache från servern */
+self.addEventListener('fetch', function (event) {
+  if (!(event.request.url.indexOf('http') === 0)) return;
+  event.respondWith(
+    caches.match(event.request).then(function (response) {
+      return response || fetch(event.request).then(function (networkResponse) {
+        return caches.open(cacheKey).then(function (cache) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      });
+    }).catch(() => caches.match(fallbackPage))
+  );
+});
