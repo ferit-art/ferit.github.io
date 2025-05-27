@@ -6,24 +6,25 @@
 const cacheKey = 'cache-v1';
 
 const cacheArray = [
-  '/index.html',
-  '/manifest.json',
-  '/style.css',
-  '/script.js',
-  '/img/icon-192x192.png',
-  '/img/icon-512x512.png',
-  '/img/icon-256x256.png',
-  '/img/icon-384x384.png'
+  './index.html',
+  './manifest.json',
+  './style.css',
+  './script.js',
+  './img/icon-192x192.png',
+  './img/icon-512x512.png',
+  './img/icon-256x256.png',
+  './img/icon-384x384.png',
+  './offline.html'
 ];
 
-const fallbackPage = '/offline.html';
+const fallbackPage = './offline.html';
 
 self.addEventListener('install', event => {
   console.log('Attempting to install service worker and cache static assets');
   event.waitUntil(
     caches.open(cacheKey)
     .then(cache => {
-      return cache.addAll([...cacheArray, fallbackPage]);
+      return cache.addAll([...cacheArray]);
     })
   );
 });
