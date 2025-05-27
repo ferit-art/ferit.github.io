@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontaktkort</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="manifest" href="manifest.json?v=1.2">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Calculator">
+    <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+</head>
+<body id="screen">
+    <header class="">
+        <h1>Kontakt</h1>
+    </header>
+    <main>
+        <section>
+            <img src="img/profilephoto.jpg" alt="profilbild">
+            <h2>Ferit Bat</h2>
+            <section>
+                <img src="img/info.png" alt="information">
+                <p>Elev: Informations och mediateknik, Teknikprogram</p>
+                <img src="img/mail.png" alt="mailadress">
+                <p>Skola: 07bafr@skola.engelholm.se</p>
+                <p>Privat: feritbat6@gmail.com</p>
+                <img src="img/phone.png" alt="telefon">
+                <p>+46 073 523 2993</p>
+            </section>
+        </section>
+        <section id="Utbildning">
+            <header class="header">
+                <p>Utbildning</p>
+            </header>
+            <p>Ängelholms Gymnasieskola</p>
+            <p>Box 1022</p>
+            <p>262 21 Ängelholm</p>
+            <p>Besök: Skolgatan 8</p>
+            <footer class="footer">
+                <button><img id="mapsLänk_s" src="img/link.png" alt="länk_till_kartplats_skola"></button>
+            </footer>
+        </section>
+        <section id="Hem">
+            <header class="header">
+                <p>Hem</p>
+            </header>
+            <p>Trapetsgatan 16</p>
+            <p>262 55 Ängelholm</p>
+            <footer class="footer">
+                <button><img id="mapsLänk_h" src="img/link.png" alt="länk_till_kartplats_hem"></button>
+            </footer>
+        </section>
+    </main>
+    <footer id="footer" class="footer">
+        <button><img id="mobilnr" src="img/phone.png" alt="telefon_länk"></button>
+        <button><img id="sms" src="img/message.png" alt="chat_länk"></button>
+        <button><img id="mejl" src="img/mail.png" alt="mejl_länk"></button>
+    </footer>
+</body>
+<script>
+    if('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js?v=1.5');
+        });
+    }
+</script>
+</html>
