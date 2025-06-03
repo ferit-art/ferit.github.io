@@ -3,7 +3,7 @@
     "name": "ContactCard",
     "icons": [
         {
-            "src": "/miniprojekt_3.2/img/icon-192x192.png",
+            "src": "/miniprojekt_3.2/img/phone.png",
             "sizes": "192x192",
             "type": "image/png"
         },
@@ -19,11 +19,5 @@
     "display": "standalone",
     "scope": "/miniprojekt_3.2/",
     "description": "Utbildnings app för PWA",
-    "screenshots": [
-        {
-            "src": "/miniprojekt_3.2/img/screenShot-1.png",
-            "sizes": "377x670",
-            "type": "image/png"
-        }
-    ]
+    "screenshots": [ ]
 }

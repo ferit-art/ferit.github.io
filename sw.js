@@ -10,10 +10,12 @@ const cacheArray = [
   '/miniprojekt_3.2/manifest.json',
   '/miniprojekt_3.2/style.css',
   '/miniprojekt_3.2/script.js',
-  '/miniprojekt_3.2/img/icon-192x192.png',
-  '/miniprojekt_3.2/img/icon-512x512.png',
-  '/miniprojekt_3.2/img/icon-256x256.png',
-  '/miniprojekt_3.2/img/icon-384x384.png',
+  '/miniprojekt_3.2/img/phone.png',
+  '/miniprojekt_3.2/img/profilephoto.jpg',
+  '/miniprojekt_3.2/img/message.png',
+  '/miniprojekt_3.2/img/mail.png',
+  '/miniprojekt_3.2/img/link.png',
+  '/miniprojekt_3.2/img/info.png',
   '/miniprojekt_3.2/offline.html'
 ];
 
